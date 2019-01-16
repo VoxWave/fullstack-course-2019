@@ -1,0 +1,26 @@
+Selain->Palvelin: HTTP GET /spa
+
+Palvelin-->Selain: HTML-koodi
+
+Selain->Palvelin: HTTP GET /main.css
+
+Palvelin-->Selain: main.css
+
+Selain->Palvelin: HTTP GET /spa.js
+
+Palvelin-->Selain: spa.js
+
+note over Selain:
+selain alkaa suorittaa js-koodia
+joka pyytää JSON-datan palvelimelta
+end note
+
+Selain->Palvelin: HTTP Get /data.json
+
+Palvelin-->Selain: [{ content: "HTML on helppoa", date: "2019-01-01" }, ...]
+
+note over Selain:
+selain suorittaa tapahtumankäsittelijän
+joka renderöi muistiinpanot näytölle
+end note
+
