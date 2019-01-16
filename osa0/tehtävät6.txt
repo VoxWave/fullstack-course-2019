@@ -1,0 +1,9 @@
+note over Selain:
+tapahtumakäsittelijä estää sivun vaihdon.
+se luo uuden muistiinpano olion jossa on itse muistiinpano ja päivämäärä muistiinpanolle.
+uusi viesti pusketaan selaimessa ylläpidettävään muistiinpanolistaan.
+muistiinpanolista renderöidään uudestaan.
+ja lopuksi muistiinpano lähetetään palvelimelle.
+end note
+Selain->Palvelin: HTTP POST /new_note_spa (muistiinpano-olio json muodossa)
+Palvelin-->Selain: {"message":"note created"}
