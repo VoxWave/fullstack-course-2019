@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import zip from 'lodash/zip'
 import sum from 'lodash/sum'
 
 const Header = (props) => {
@@ -10,41 +9,46 @@ const Header = (props) => {
 }
 
 const Content = (props) => {
-  return zip(props.part_names, props.part_exercises).map((e) => [
-    <Part name = {e[0]} amount={e[1]} />  
+  return props.parts.map(p => [
+    <Part name = {p.name} exercises={p.exercises} />  
   ])
 }
 
 const Part = (props) => {
   return (
-    <p>{props.name} {props.amount}</p>
+    <p>{props.name} {props.exercises}</p>
   )
 }
 
 const Total = (props) => {
   return (
-    <p>yhteensä {sum(props.part_exercises)} tehtävää</p>
+    <p>yhteensä {sum(props.parts.map(p => p.exercises))} tehtävää</p>
   )
 }
 
 const App = () => {
   const course = 'Half Stack -sovelluskehitys'
-  const part1 = 'Reactin perusteet'
-  const exercises1 = 10
-  const part2 = 'Tiedonvälitys propseilla'
-  const exercises2 = 7
-  const part3 = 'Komponenttien tila'
-  const exercises3 = 14
-  const part_exercises = [exercises1, exercises2, exercises3]
+  const part1 = {
+    name: 'Reactin perusteet',
+    exercises: 10
+  }
+  const part2 = {
+    name: 'Tiedonvälitys propseilla',
+    exercises: 7
+  }
+  const part3 = {
+    name: 'Komponenttien tila',
+    exercises: 14
+  }
+  const parts = [part1, part2, part3]
 
   return (
     <div>
       <Header course = {course} />
       <Content 
-        part_names = {[part1, part2, part3]} 
-        part_exercises = {part_exercises} 
+        parts = {parts}
       />
-      <Total part_exercises = {part_exercises}/>
+      <Total parts = {parts}/>
     </div>
   )
 }
